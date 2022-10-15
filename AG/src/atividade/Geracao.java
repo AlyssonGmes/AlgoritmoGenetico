@@ -18,6 +18,9 @@ public class Geracao {
             Cromossomo[] sorteados = Geracao.selecionarDezAleatorios(p1);
             p1.adicionarCromossomo(sorteados);
             id++;
+            if(id%2000 == 0){
+                System.out.println("Buscando...\n");
+            }
         }
 
         for(Cromossomo d : intermediaria) {
