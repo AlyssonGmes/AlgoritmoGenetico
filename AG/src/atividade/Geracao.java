@@ -19,7 +19,7 @@ public class Geracao {
             p1.adicionarCromossomo(sorteados);
             id++;
             if(id%2000 == 0){
-                System.out.println("Buscando...\n");
+                System.out.println("Buscando...");
             }
         }
 
@@ -27,10 +27,9 @@ public class Geracao {
             for (Cromossomo c : intermediaria) {
                 Otimizacao atv = new Otimizacao(Cromossomo.intervaloDesejado(c.cromossomoEmDecimal),Cromossomo.intervaloDesejado(d.cromossomoEmDecimal));
                 if(atv.resultado == 0){
-                    System.out.println();
-                    System.out.println("Valor A: "+(int)Cromossomo.intervaloDesejado(c.cromossomoEmDecimal));
+                    System.out.println("\nValor A: "+(int)Cromossomo.intervaloDesejado(c.cromossomoEmDecimal));
                     System.out.println("Valor B: "+(int)Cromossomo.intervaloDesejado(d.cromossomoEmDecimal));
-                    System.out.println("Geração: "+id/2000+"ª");
+                    System.out.println("Geração: "+id/2000+"ª\n");
                     return;
                 }
             }
