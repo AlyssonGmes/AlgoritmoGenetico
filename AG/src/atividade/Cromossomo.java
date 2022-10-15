@@ -1,8 +1,10 @@
+package atividade;
+
 import java.util.Random;
 
 public class Cromossomo {
     byte[] cromossomoEmBinario;
-    int cromossomoEmDecimal;
+    double cromossomoEmDecimal;
     double valorDesejado;
     double valorFitness;
 
@@ -28,15 +30,15 @@ public class Cromossomo {
         int soma = 0;
         int exp = arr.length - 1;
 
-        for (int i = 0; i < arr.length; i++) {
-            soma += arr[i] * (Math.pow(2, exp));
+        for (byte b : arr) {
+            soma += b * (Math.pow(2, exp));
             exp--;
         }
 
         return soma;
     }
 
-    static double intervaloDesejado(int num) {
+    static double intervaloDesejado(double num) {
         double valor = 0;
 
         valor = (-1 + num * (3 / (Math.pow(2, 22) - 1)));
@@ -44,8 +46,8 @@ public class Cromossomo {
         return valor;
     }
 
-    static double funcaoFitness(double populacao) {
-        return populacao * Math.sin(10 * Math.PI * populacao + 1);
+    static double funcaoFitness(double valorDecimal) {
+        return valorDecimal * (Math.sin(10 * Math.PI * valorDecimal)) + 1;
     }
 
     public void update() {
@@ -53,30 +55,52 @@ public class Cromossomo {
         valorDesejado = intervaloDesejado(cromossomoEmDecimal);
         valorFitness = funcaoFitness(valorDesejado);
     }
+
+    public byte[] getCromossomoEmBinario() {
+        return cromossomoEmBinario;
+    }
+
+    public double getCromossomoEmDecimal() {
+        return cromossomoEmDecimal;
+    }
+
+    public double getValorDesejado() {
+        return valorDesejado;
+    }
+
+    public double getValorFitness() {
+        return valorFitness;
+    }
+
+    public void setCromossomoEmBinario(byte[] cromossomoEmBinario) {
+        this.cromossomoEmBinario = cromossomoEmBinario;
+    }
+
+    public void setCromossomoEmDecimal(double cromossomoEmDecimal) {
+        this.cromossomoEmDecimal = cromossomoEmDecimal;
+    }
+
+    public void setValorDesejado(double valorDesejado) {
+        this.valorDesejado = valorDesejado;
+    }
+
+    public void setValorFitness(double valorFitness) {
+        this.valorFitness = valorFitness;
+    }
 }
 
-  /*
-
-        static double[] funcaoFitness(double[] populacao) {
 
 
-        double []arrFitness = new double[populacao.length];
-        for (int i = 0; i < populacao.length; i++) {
-            arrFitness[i] = populacao[i] * Math.sin(10 * Math.PI * populacao[i]) + 1;
-        }
-
-        return ordemCrescente(arrFitness);
 
 
-        /*    static double[] intervaloDesejado(int num[]) {
-        double []temp = new double[num.length];
 
-        for(int i = 0; i < num.length; i++) {
-            temp[i] = (-1 + temp[i] * (3 / (Math.pow(2, 22) - 1)));
-        }
 
-        return temp;
-         }
 
-   */
+
+
+
+
+
+
+
 
