@@ -5,7 +5,9 @@ public class Main {
         //Gerar 1 população
 
         //1 geração = 100 intermediários (preenchidos com os mais aptos de uma população de 1000)
-        Geracao g1 = new Geracao(1000);
+        do {
+            Geracao g1 = new Geracao(2000);
+        } while (true);
     }
 }
 

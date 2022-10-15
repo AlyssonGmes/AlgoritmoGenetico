@@ -1,6 +1,7 @@
 package atividade;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Populacao {
     ArrayList<Cromossomo> populacao = new ArrayList<>();
@@ -10,8 +11,8 @@ public class Populacao {
         }
     }
 
-    public void adicionarCromossomo(Cromossomo cromo){
-        populacao.add(new Cromossomo());
+    public void adicionarCromossomo(Cromossomo[] cromo){
+        populacao.addAll(Arrays.asList(cromo));
     }
 
     public static Cromossomo maisApto(Cromossomo[] arranjo){

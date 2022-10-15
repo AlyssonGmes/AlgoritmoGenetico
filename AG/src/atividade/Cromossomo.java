@@ -3,6 +3,7 @@ package atividade;
 import java.util.Random;
 
 public class Cromossomo {
+
     byte[] cromossomoEmBinario;
     double cromossomoEmDecimal;
     double valorDesejado;
@@ -39,15 +40,11 @@ public class Cromossomo {
     }
 
     static double intervaloDesejado(double num) {
-        double valor = 0;
-
-        valor = (-1 + num * (3 / (Math.pow(2, 22) - 1)));
-
-        return valor;
+        return (1 + (10-1) * num/Math.pow(2, 22)-1);
     }
 
     static double funcaoFitness(double valorDecimal) {
-        return valorDecimal * (Math.sin(10 * Math.PI * valorDecimal)) + 1;
+        return (valorDecimal * (Math.sin(10 * Math.PI * valorDecimal)) + 1);
     }
 
     public void update() {

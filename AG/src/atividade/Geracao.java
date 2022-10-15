@@ -1,12 +1,11 @@
 package atividade;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
 public class Geracao {
-    ArrayList<Populacao> populacoes = new ArrayList<>();
+    static int id = 1;
     ArrayList<Cromossomo> intermediaria = new ArrayList<>();
 
     public Geracao(int numGeracoes) {
@@ -17,16 +16,22 @@ public class Geracao {
             gerarIntermediarios(100);
             cruzamentoDeUmPonto(intermediaria);
             Cromossomo[] sorteados = Geracao.selecionarDezAleatorios(p1);
-            p1.adicionarCromossomo(Populacao.maisApto(sorteados));
+            p1.adicionarCromossomo(sorteados);
+            id++;
         }
 
-        double maior = p1.populacao.get(0).valorFitness;
-        for(Cromossomo p : p1.populacao){
-            if(p.valorFitness > maior){
-                maior = p.valorFitness;
+        for(Cromossomo d : intermediaria) {
+            for (Cromossomo c : intermediaria) {
+                Otimizacao atv = new Otimizacao(Cromossomo.intervaloDesejado(c.cromossomoEmDecimal),Cromossomo.intervaloDesejado(d.cromossomoEmDecimal));
+                if(atv.resultado == 0){
+                    System.out.println();
+                    System.out.println("Valor A: "+(int)Cromossomo.intervaloDesejado(c.cromossomoEmDecimal));
+                    System.out.println("Valor B: "+(int)Cromossomo.intervaloDesejado(d.cromossomoEmDecimal));
+                    System.out.println("Geração: "+id/2000+"ª");
+                    return;
+                }
             }
         }
-        System.out.println("Maior valor: "+maior);
     }
 
     public void gerarIntermediarios(int numIntermediarios) {
