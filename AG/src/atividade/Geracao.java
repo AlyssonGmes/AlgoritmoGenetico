@@ -5,48 +5,13 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 
 public class Geracao {
+    Random rnd = new Random();
     static int id = 1;
     ArrayList<Cromossomo> intermediaria = new ArrayList<>();
+    ArrayList<Cromossomo> geracao = new ArrayList<>();
 
     public Geracao(int numGeracoes) {
-        Populacao p1 = new Populacao();
-        p1.criarPopulacao(1000);
 
-        for (int i = 0; i < numGeracoes; i++) {
-            gerarIntermediarios(100);
-            cruzamentoDeUmPonto(intermediaria);
-            Cromossomo[] sorteados = Geracao.selecionarDezAleatorios(p1);
-            p1.adicionarCromossomo(sorteados);
-            id++;
-            if(id%2000 == 0){
-                System.out.println("Buscando...");
-            }
-        }
-
-        for(Cromossomo d : intermediaria) {
-            for (Cromossomo c : intermediaria) {
-                Otimizacao atv = new Otimizacao(Cromossomo.intervaloDesejado(c.cromossomoEmDecimal),Cromossomo.intervaloDesejado(d.cromossomoEmDecimal));
-                if(atv.resultado == 0){
-                    System.out.println("\nValor A: "+(int)Cromossomo.intervaloDesejado(c.cromossomoEmDecimal));
-                    System.out.println("Valor B: "+(int)Cromossomo.intervaloDesejado(d.cromossomoEmDecimal));
-                    System.out.println("Geração: "+id/2000+"ª\n");
-                    return;
-                }
-            }
-        }
-    }
-
-    public void gerarIntermediarios(int numIntermediarios) {
-        do {
-            criarGeracao(1000);
-        } while (intermediaria.size() < numIntermediarios);
-    }
-
-    public void criarGeracao(int numPop) {
-        Populacao p1 = new Populacao();
-        p1.criarPopulacao(numPop);
-        Cromossomo[] sorteados = Geracao.selecionarDezAleatorios(p1);
-        intermediaria.add(Populacao.maisApto(sorteados));
     }
 
     public void cruzamentoDeUmPonto(ArrayList<Cromossomo> intermediaria) {
@@ -69,6 +34,19 @@ public class Geracao {
             intermediaria.get(i).update();
             intermediaria.get(i + 1).cromossomoEmBinario = filho2;
             intermediaria.get(i + 1).update();
+        }
+    }
+
+    public void mutacaoSimples(ArrayList<Cromossomo> intermediaria) {
+        int temp;
+        for (int i = 0; i < intermediaria.size(); i++) {
+            temp = rnd.nextInt(22);
+            if (intermediaria.get(i).cromossomoEmBinario[temp] == 1) {
+                intermediaria.get(i).cromossomoEmBinario[temp] = 0;
+            } else {
+                intermediaria.get(i).cromossomoEmBinario[temp] = 1;
+            }
+            intermediaria.get(i).update();
         }
     }
 
