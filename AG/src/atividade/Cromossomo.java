@@ -39,8 +39,9 @@ public class Cromossomo {
         return soma;
     }
 
+    //Intervalo [-1, 2]
     static double intervaloDesejado(double num) {
-        return (1 + (10-1) * num/Math.pow(2, 22)-1);
+        return (-1 + num * (3 / Math.pow(2, 22) - 1));
     }
 
     static double funcaoFitness(double valorDecimal) {
