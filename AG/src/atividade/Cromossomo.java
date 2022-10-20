@@ -1,5 +1,5 @@
 package atividade;
-
+//
 import java.util.Random;
 
 public class Cromossomo {

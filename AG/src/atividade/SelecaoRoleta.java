@@ -1,7 +1,7 @@
 package atividade;
 
 import java.util.Random;
-
+//
 public class SelecaoRoleta {
     public static void gerarRoleta(Populacao populacao) {
         Random rnd = new Random();

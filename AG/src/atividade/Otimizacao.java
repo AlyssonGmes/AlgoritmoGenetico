@@ -1,5 +1,5 @@
 package atividade;
-
+//
 public class Otimizacao {
     double valorA = 0, valorB = 0, resultado = 0;
     public Otimizacao(double a, double b) {
