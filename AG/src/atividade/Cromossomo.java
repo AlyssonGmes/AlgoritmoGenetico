@@ -3,9 +3,8 @@ package atividade;
 import java.util.Random;
 
 public class Cromossomo {
-
     byte[] cromossomoEmBinario;
-    double cromossomoEmDecimal;
+    int cromossomoEmDecimal;
     double valorDesejado;
     double valorFitness;
 
@@ -23,7 +22,6 @@ public class Cromossomo {
         for (int i = 0; i < cromossomo.length; i++) {
             cromossomo[i] = (byte) rnd.nextInt(2);
         }
-
         return cromossomo;
     }
 
@@ -40,8 +38,8 @@ public class Cromossomo {
     }
 
     //Intervalo [-1, 2]
-    static double intervaloDesejado(double num) {
-        return (-1 + num * (3 / Math.pow(2, 22) - 1));
+    static double intervaloDesejado(int valorDecimal) {
+        return (-1 + valorDecimal * (3 / (Math.pow(2, 22) - 1)));
     }
 
     static double funcaoFitness(double valorDecimal) {
@@ -74,11 +72,11 @@ public class Cromossomo {
         this.cromossomoEmBinario = cromossomoEmBinario;
     }
 
-    public void setCromossomoEmDecimal(double cromossomoEmDecimal) {
+    public void setCromossomoEmDecimal(int cromossomoEmDecimal) {
         this.cromossomoEmDecimal = cromossomoEmDecimal;
     }
 
-    public void setValorDesejado(double valorDesejado) {
+    public void setValorDesejado(int valorDesejado) {
         this.valorDesejado = valorDesejado;
     }
 

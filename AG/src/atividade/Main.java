@@ -2,12 +2,14 @@ package atividade;
 
 public class Main {
     public static void main(String[] args) {
-        //Gerar 1 população
-        //1 geração = 100 intermediários (preenchidos com os mais aptos de uma população de 1000)
+        Populacao popInicial = new Populacao();
+        popInicial.criarPopulacaoIntermediaria(1000);
+        int numGeracoes = 1000;
 
-        do {
-            Geracao g1 = new Geracao(2000);
-        } while (true);
+        Geracao g1 = new Geracao(numGeracoes, popInicial);
+        g1.populacaoGerada.verPopulacao();
+        System.out.println("Mais apto: " + g1.populacaoGerada.maisApto.valorFitness);
+        System.out.println("Nº de Gerações: "+Geracao.numGeracoes);
     }
 }
 
